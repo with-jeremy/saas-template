@@ -9,7 +9,7 @@ export default function AboutPage() {
         It includes user authentication, role management, and a dashboard for managing users.
       </p>
       <p>
-        For more information, visit the project's GitHub repository or contact the author.
+        For more information, visit the project GitHub repository or contact the author.
       </p>
     </div>
   );

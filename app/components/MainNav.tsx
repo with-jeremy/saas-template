@@ -30,7 +30,10 @@ export default async function MainNav() {
         {userId ? (
           <Button>
             <Link href="/dashboard">Dashboard</Link>
-            <UserButton afterSignOutUrl="/" />
+            <UserButton 
+              afterSignOutUrl="/"
+              showName={true}
+            />
           </Button>
         ) : (
           <SignInButton />

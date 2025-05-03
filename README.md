@@ -2,35 +2,78 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+<form action={clientAction} className="space-y-6">
+      {successMessage && (
+        <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
+          {successMessage}
+        </div>
+      )}
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+      {errorMessage && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          {errorMessage}
+        </div>
+      )}
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+      <div>
+        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+          First Name
+        </label>
+        <input
+          id="firstName"
+          name="firstName"
+          type="text"
+          defaultValue={defaultFirstName}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+        />
+      </div>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+      <div>
+        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+          Last Name
+        </label>
+        <input
+          id="lastName"
+          name="lastName"
+          type="text"
+          defaultValue={defaultLastName}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+        />
+      </div>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+      <div>
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          Email Address
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          defaultValue={defaultEmail}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          required
+        />
+      </div>
 
-## Learn More
+      <div>
+        <button
+          type="submit"
+          disabled={isPending}
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+        >
+          {isPending ? "Saving..." : "Save Profile"}
+        </button>
+      </div>
 
-To learn more about Next.js, take a look at the following resources:
+      {existingUser && (
+        <div className="bg-gray-50 p-4 mt-6 rounded-md">
+          <p className="text-xs text-gray-400 mt-1">
+            Last updated: {new Date(existingUser.updatedAt).toLocaleString()}
+          </p>
+        </div>
+      )}
+    </form>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+formData.append("clerkUserId", clerkUserId);  
+ // Submit the form data to the server action
+const result = await upsertUserAction(formData);

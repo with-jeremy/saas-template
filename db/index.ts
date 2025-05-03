@@ -1,7 +1,11 @@
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
+import { config } from "dotenv";
+import * as schema from "@/db/schema";
+
+config({ path: ".env.local" }); 
 
 const sql = neon(process.env.DATABASE_URL!);
 export const db = drizzle(sql, { 
-  schema: { UsersTable: "users" } // Adjust schema as needed
+  schema: schema // Use the imported schema
  });
